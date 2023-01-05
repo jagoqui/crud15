@@ -1,0 +1,52 @@
+<form [formGroup]="form">
+  <p>Edit Player</p>
+  <div class="mb-3">
+    <label for="name" class="form-label">Player's name</label>
+    <input
+      id="player-name"
+      type="text"
+      class="form-control"
+      formControlName="name"
+      placeholder="Player's name'"
+    />
+    <button class="btn btn-primary mt-2" (click)="createDeck()">
+      Add Deck
+    </button>
+  </div>
+  <div
+    class="decks"
+    formArrayName="decks"
+    *ngFor="let item of decks; let i = index"
+  >
+    <form class="row g-3" [formGroupName]="i">
+      <div class="col-auto">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+          placeholder="Deck's Name"
+        />
+      </div>
+      <div class="col-auto">
+        <label for="cards">Cards</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cards"
+          formControlName="cards"
+          placeholder="Quantity Cards"
+        />
+      </div>
+    </form>
+  </div>
+</form>
+
+<button
+  class="btn btn-primary mt-2"
+  (click)="updatePlayer()"
+  [disabled]="form.invalid"
+>
+  Save
+</button>
